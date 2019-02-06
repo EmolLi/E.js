@@ -1,0 +1,19 @@
+{
+  "name": "e.js",
+  "version": "1.0.0",
+  "description": "Optimizing UI update performance in web framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmolLi/E.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EmolLi/E.js/issues"
+  },
+  "homepage": "https://github.com/EmolLi/E.js#readme"
+}
