@@ -1,5 +1,7 @@
 import { Component, TextNode, ElementNode, build } from "../../src/index.js";
 
+// Tested: TextNode construction
+
 let c = new Component({
   position: document.body,
   render: () => {

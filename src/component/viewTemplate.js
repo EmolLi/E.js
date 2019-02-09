@@ -22,9 +22,9 @@ export class TextNode extends ViewTemplate {
 }
 
 export class ElementNode extends ViewTemplate {
-  constructor({ tag, properties, children = [] }) {
+  constructor({ tag, properties = {}, children = [] }) {
     super();
-    this.tag = type;
+    this.tag = tag;
     this.properties = properties;
     this.children = children;
   }

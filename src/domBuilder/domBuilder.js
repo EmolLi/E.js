@@ -5,7 +5,7 @@ export function build(component) {
   if (component.domNode)
     component.position.replaceChild(node, component.domNode);
   else component.position.appendChild(node);
-  // component.domNode = node;
+  component.domNode = node;
 }
 /*
 * @param {ViewTemplate}
