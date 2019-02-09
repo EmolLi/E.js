@@ -1,3 +1,2 @@
-export function hey() {
-  console.log("hey");
-}
+export * from "./component.js";
+export * from "./viewTemplate.js";

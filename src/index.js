@@ -1,3 +1,2 @@
-import { hey } from "./component/index.js";
-console.log("hiii");
-hey();
+export { Component, TextNode, ElementNode } from "./component/index.js";
+export { build } from "./domBuilder/index.js";
