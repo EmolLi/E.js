@@ -1,6 +1,7 @@
 import { TextNode, ElementNode } from "../component/index.js";
 // build the component to dom nodes.
 export function build(component) {
+  console.log("[DOM BUILDER] building component.");
   let node = createDomNode(component.render());
   if (component.domNode)
     component.position.replaceChild(node, component.domNode);

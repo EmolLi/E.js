@@ -1,9 +1,11 @@
 export class Component {
-  constructor({ position, render, dependentValue = [] }) {
+  constructor({ position, render, stores = [] }) {
     this.position = position;
     this.render = render;
-    this.dependentValue = dependentValue;
+    this.stores = stores;
     this.domNode = null;
+
+    stores.forEach(s => s.addDependentComponent(this));
   }
 }
 
