@@ -12,10 +12,9 @@ export class Store {
   add(key, value) {
     Object.defineProperty(this.store, key, {
       set: x => {
-        console.log(`[STORE INFO] ${key} is modified to ${x}`);
+        console.log(`[STORE INFO] ${key} is modified to `, x);
         this._dirty = true;
         this.store[`_${key}`] = x;
-        // debugger;
         if (this._dirty) {
           this._dependents.forEach(c => {
             build(c);
