@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/EmolLi/E.js/issues"
   },
-  "homepage": "https://github.com/EmolLi/E.js#readme"
+  "homepage": "https://github.com/EmolLi/E.js#readme",
+  "dependencies": {
+    "chrome-launcher": "^0.10.5",
+    "chromedriver": "^2.46.0",
+    "lighthouse": "^4.1.0",
+    "ramda": "^0.26.1",
+    "selenium-webdriver": "^4.0.0-alpha.1"
+  }
 }

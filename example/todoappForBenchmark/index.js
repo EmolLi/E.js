@@ -6,6 +6,10 @@ import {
   Store
 } from "../../src/index.js";
 
+let benchmarkConfig = {
+  addTodoCnt: 100
+};
+
 // init store
 let s = new Store();
 s.add("newTodo", "test");
@@ -14,6 +18,39 @@ s.add("editedTodo", null);
 let store = s.store;
 
 let beforeEditCache;
+
+// ==================== benchmarking methods =================
+
+function addOneTodo(text) {
+  store.todos = [...store.todos, { title: text, id: text, completed: false }];
+}
+function addTodos(n) {
+  if (n > 0)
+    setTimeout(() => {
+      addOneTodo(`Task-${benchmarkConfig.addTodoCnt - n}`);
+      addTodos(n - 1);
+    });
+}
+function add1000TodosButton() {
+  return new ElementNode({
+    tag: "button",
+    properties: {
+      id: "benchmark-add-todos",
+      onclick: () => addTodos(benchmarkConfig.addTodoCnt)
+    },
+    children: [new TextNode("Add 10 Todos")]
+  });
+}
+export let benchmarkMethods = new Component({
+  position: document.body.firstElementChild,
+  render: () =>
+    new ElementNode({
+      tag: "div",
+      properties: { className: "benchmark" },
+      children: [add1000TodosButton()]
+    })
+});
+
 // ==================== header ===============================
 // <header class="header">
 //  <h1>todos</h1>
@@ -241,6 +278,7 @@ export let main = new Component({
 });
 
 // ======== build =================
+build(benchmarkMethods);
 build(header);
 build(main);
 
