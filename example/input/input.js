@@ -4,7 +4,7 @@ import {
   ElementNode,
   build,
   Store
-} from "../../src/index.js";
+} from "../../src/baseline/index.js";
 
 // init store
 let s = new Store();

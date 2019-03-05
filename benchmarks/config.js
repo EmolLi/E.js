@@ -6,11 +6,12 @@ module.exports = {
   WARMUP_COUNT: 5,
   TIMEOUT: 60 * 1000,
   LOG_PROGRESS: true,
-  LOG_DETAILS: true,
-  LOG_DEBUG: true,
-  LOG_TIMELINE: true,
+  LOG_DETAILS: false,
+  LOG_DEBUG: false,
+  LOG_TIMELINE: false,
   EXIT_ON_ERROR: false,
   STARTUP_DURATION_FROM_EVENTLOG: true,
   STARTUP_SLEEP_DURATION: 1000,
-  FORK_CHROMEDRIVER: true
+  FORK_CHROMEDRIVER: true,
+  TEST_URL: "http://127.0.0.1:8887/example/todoappForBenchmark/todo.html"
 };

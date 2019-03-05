@@ -1,4 +1,9 @@
-import { Component, TextNode, ElementNode, build } from "../../src/index.js";
+import {
+  Component,
+  TextNode,
+  ElementNode,
+  build
+} from "../../src/baseline/index.js";
 
 // Tested: elementNode with multiple children, event handler
 let c = new Component({

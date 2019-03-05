@@ -9,8 +9,6 @@ const chalk = require("chalk");
 const jStat = require("jStat");
 const fs = require("fs");
 
-const testUrl = "http://127.0.0.1:8887/example/todoappForBenchmark/todo.html";
-
 async function buildDriver() {
   let logPref = new logging.Preferences();
   logPref.setLevel(logging.Type.PERFORMANCE, logging.Level.ALL);
@@ -118,7 +116,7 @@ function extractRelevantEvents(entries) {
         evt: JSON.stringify(e)
       });
     } else if (e.params.name === "Rasterize") {
-      console.log("RASTERIZE ", JSON.stringify(e));
+      if (config.LOG_TIMELINE) console.log("RASTERIZE ", JSON.stringify(e));
       filteredEvents.push({
         type: "rasterize",
         ts: +e.params.ts,
@@ -127,7 +125,7 @@ function extractRelevantEvents(entries) {
         evt: JSON.stringify(e)
       });
     } else if (e.params.name === "CompositeLayers") {
-      console.log("COMPOSITE ", JSON.stringify(e));
+      if (config.LOG_TIMELINE) console.log("COMPOSITE ", JSON.stringify(e));
       filteredEvents.push({
         type: "copmosite",
         ts: +e.params.ts,
@@ -136,7 +134,7 @@ function extractRelevantEvents(entries) {
         evt: JSON.stringify(e)
       });
     } else if (e.params.name === "Layout") {
-      console.log("LAYOUT ", JSON.stringify(e));
+      if (config.LOG_TIMELINE) console.log("LAYOUT ", JSON.stringify(e));
       filteredEvents.push({
         type: "layout",
         ts: +e.params.ts,
@@ -145,7 +143,7 @@ function extractRelevantEvents(entries) {
         evt: JSON.stringify(e)
       });
     } else if (e.params.name === "UpdateLayerTree") {
-      console.log("UPDATELAYER ", JSON.stringify(e));
+      if (config.LOG_TIMELINE) console.log("UPDATELAYER ", JSON.stringify(e));
       filteredEvents.push({
         type: "updateLayer",
         ts: +e.params.ts,
@@ -193,7 +191,7 @@ async function runCPUBenchmark(benchmark, benchmarkOption) {
     for (let i = 0; i < benchmarkOption.numIterationsForAllBenchmarks; i++) {
       try {
         console.log("[INFO] Iteration " + i);
-        await driver.get(testUrl);
+        await driver.get(config.TEST_URL);
 
         // await (driver as any).sendDevToolsCommand('Network.enable');
         // await (driver as any).sendDevToolsCommand('Network.emulateNetworkConditions', {
