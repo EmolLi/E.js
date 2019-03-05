@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/EmolLi/E.js#readme",
   "dependencies": {
+    "chalk": "^2.4.2",
     "chrome-launcher": "^0.10.5",
     "chromedriver": "^2.46.0",
+    "jStat": "^1.7.1",
     "lighthouse": "^4.1.0",
     "ramda": "^0.26.1",
     "selenium-webdriver": "^4.0.0-alpha.1"

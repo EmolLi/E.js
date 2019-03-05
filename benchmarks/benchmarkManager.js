@@ -6,7 +6,7 @@ const R = require("ramda");
 const { fork } = require("child_process");
 
 let benchmarkOption = {
-  // outputDirectory: dir,
+  outputDirectory: "./result/",
   port: config.PORT.toFixed(),
   // headless: args.headless,
   // chromeBinaryPath: args.chromeBinary,

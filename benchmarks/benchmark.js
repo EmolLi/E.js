@@ -37,6 +37,7 @@ const Benchmark = class Benchmark {
     this.label = benchmarkInfo.label;
     this.description = benchmarkInfo.description;
     this.throttleCPU = benchmarkInfo.throttleCPU;
+    this.benchmarkInfo = benchmarkInfo;
   }
 
   init(driver) {}
@@ -44,8 +45,12 @@ const Benchmark = class Benchmark {
   after(driver) {}
 
   // Good fit for a single result creating Benchmark
-  // resultKinds(): Array<BenchmarkInfo> { return [this.benchmarkInfo]; }
-  // extractResult(results: any[], resultKind: BenchmarkInfo): number[] { return results; };
+  resultKinds() {
+    return [this.benchmarkInfo];
+  }
+  extractResult(results, resultKind) {
+    return results;
+  }
 };
 
 const Benchmark_AddTodos = new class extends Benchmark {
@@ -53,7 +58,7 @@ const Benchmark_AddTodos = new class extends Benchmark {
     super({
       id: "01_addTodos",
       label: "create todos",
-      description: "creating 1,000 todos",
+      description: "creating 1,00 todos",
       type: BenchmarkType.CPU
     });
   }
@@ -64,7 +69,7 @@ const Benchmark_AddTodos = new class extends Benchmark {
     await clickElementById(driver, "benchmark-add-todos");
     await testElementLocatedByXpath(
       driver,
-      "html/body/section/section/ul/li[100]"
+      "html/body/section/section/ul/li[99]"
     );
   }
 }();

@@ -38,7 +38,7 @@ function add1000TodosButton() {
       id: "benchmark-add-todos",
       onclick: () => addTodos(benchmarkConfig.addTodoCnt)
     },
-    children: [new TextNode("Add 10 Todos")]
+    children: [new TextNode("Add 100 Todos")]
   });
 }
 export let benchmarkMethods = new Component({

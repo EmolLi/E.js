@@ -1,0 +1,1 @@
+{"benchmark":"01_addTodos","type":"cpu","min":1275.311,"max":1325.773,"mean":1300.542,"median":1300.542,"geometricMean":1300.2972315601537,"standardDeviation":35.68202239223555,"values":[1325.773,1275.311]}

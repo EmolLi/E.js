@@ -1,4 +1,5 @@
 const chrome = require("selenium-webdriver/chrome");
+const chalk = require("chalk");
 const {
   By,
   until,
@@ -36,10 +37,10 @@ function testElementLocatedByXpath(driver, xpath, timeout = config.TIMEOUT) {
         let elem = await driver.findElement(By.xpath(xpath));
         return elem ? true : false;
       } catch (err) {
-        console.log(
-          "ignoring error in testElementLocatedByXpath for xpath = " + xpath,
-          err.toString()
-        );
+        // console.log(
+        //   "ignoring error in testElementLocatedByXpath for xpath = " + xpath,
+        //   err.toString()
+        // );
       }
     },
     timeout
