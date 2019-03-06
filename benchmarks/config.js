@@ -1,6 +1,6 @@
 module.exports = {
   PORT: 8080,
-  REPEAT_RUN: 2,
+  REPEAT_RUN: 15,
   REPEAT_RUN_STARTUP: 4,
   DROP_WORST_RUN: 0,
   WARMUP_COUNT: 5,
