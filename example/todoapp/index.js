@@ -4,7 +4,7 @@ import {
   ElementNode,
   build,
   Store
-} from "../../src/baseline/index.js";
+} from "../../src/vdom-snabbdom/index.js";
 
 // init store
 let s = new Store();

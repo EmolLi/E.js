@@ -27,4 +27,6 @@ function forkedRun(benchmark, benchmarkOption) {
   });
 }
 
-forkedRun(BENCHMARK_TYPES.Benchmark_AddTodos, benchmarkOption);
+// forkedRun(BENCHMARK_TYPES.Benchmark_AddTodos, benchmarkOption);
+// forkedRun(BENCHMARK_TYPES.Benchmark_DeleteTodos, benchmarkOption);
+forkedRun(BENCHMARK_TYPES.Benchmark_ReorderTodos, benchmarkOption);

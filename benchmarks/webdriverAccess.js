@@ -55,6 +55,32 @@ function clickElementById(driver, id) {
   });
 }
 
+// driver.findElement(By.xpath("//tbody/tr[1]/td[1]")).getText().then(...) can throw a stale element error:
+// thus we're using a safer way here:
+async function testTextContains(driver, xpath, text, timeout = config.TIMEOUT) {
+  return waitForCondition(driver)(
+    `testTextContains ${xpath} ${text}`,
+    async function(driver) {
+      try {
+        await driver.findElement(By.tagName("body"));
+        elem = await driver.findElement(By.xpath(xpath));
+        if (elem == null) return false;
+        let v = await elem.getText();
+        return v && v.indexOf(text) > -1;
+      } catch (err) {
+        // console.log(
+        //   "ignoring error in testTextContains for xpath = " +
+        //     xpath +
+        //     " text = " +
+        //     text,
+        //   err.toString().split("\n")[0]
+        // );
+      }
+    },
+    timeout
+  );
+}
+
 function waitForCondition(driver) {
   return async function(text, fn, timeout) {
     return await driver.wait(new Condition(text, fn), timeout);
@@ -74,6 +100,7 @@ async function retry(retryCount, driver, fun) {
 module.exports = {
   testElementLocatedById,
   testElementLocatedByXpath,
+  testTextContains,
   clickElementById,
   waitForCondition
 };

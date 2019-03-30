@@ -3,6 +3,7 @@ const { Builder, WebDriver, promise, logging } = require("selenium-webdriver");
 const {
   testElementLocatedById,
   testElementLocatedByXpath,
+  testTextContains,
   clickElementById,
   waitForCondition
 } = require("./webdriverAccess");
@@ -74,12 +75,80 @@ const Benchmark_AddTodos = new class extends Benchmark {
   }
 }();
 
+const Benchmark_DeleteTodos = new class extends Benchmark {
+  constructor() {
+    super({
+      id: "02_deleteTodos",
+      label: "delete todos",
+      description: "deleting 1,00 todos",
+      type: BenchmarkType.CPU
+    });
+  }
+  async init(driver) {
+    await testElementLocatedById(driver, "benchmark-add-todos", SHORT_TIMEOUT);
+    await testElementLocatedById(
+      driver,
+      "benchmark-delete-todos",
+      SHORT_TIMEOUT
+    );
+    await clickElementById(driver, "benchmark-add-todos");
+    await testElementLocatedByXpath(
+      driver,
+      "html/body/section/section/ul/li[99]"
+    );
+  }
+  async run(driver) {
+    await clickElementById(driver, "benchmark-delete-todos");
+    await testTextContains(
+      driver,
+      "html/body/section/section/ul/li/div/label",
+      "Task-99"
+    );
+  }
+}();
+
+const Benchmark_ReorderTodos = new class extends Benchmark {
+  constructor() {
+    super({
+      id: "03_reorderTodos",
+      label: "reorder todos",
+      description: "reordering 1,00 todos",
+      type: BenchmarkType.CPU
+    });
+  }
+  async init(driver) {
+    await testElementLocatedById(driver, "benchmark-add-todos", SHORT_TIMEOUT);
+    await testElementLocatedById(
+      driver,
+      "benchmark-reorder-todos",
+      SHORT_TIMEOUT
+    );
+    await clickElementById(driver, "benchmark-add-todos");
+    await testElementLocatedByXpath(
+      driver,
+      "html/body/section/section/ul/li[99]"
+    );
+  }
+  async run(driver) {
+    await clickElementById(driver, "benchmark-reorder-todos");
+    await testTextContains(
+      driver,
+      "html/body/section/section/ul/li/div/label",
+      "Task-1"
+    );
+  }
+}();
+
 const BENCHMARK_TYPES = {
-  Benchmark_AddTodos: "Benchmark_AddTodos"
+  Benchmark_AddTodos: "Benchmark_AddTodos",
+  Benchmark_DeleteTodos: "Benchmark_DeleteTodos",
+  Benchmark_ReorderTodos: "Benchmark_ReorderTodos"
 };
 
 const benchmarks = {
-  Benchmark_AddTodos: Benchmark_AddTodos
+  Benchmark_AddTodos: Benchmark_AddTodos,
+  Benchmark_DeleteTodos: Benchmark_DeleteTodos,
+  Benchmark_ReorderTodos: Benchmark_ReorderTodos
 };
 
 module.exports = {

@@ -4,7 +4,7 @@ import {
   ElementNode,
   build,
   Store
-} from "../../src/baseline/index.js";
+} from "../../src/vdom-snabbdom/index.js";
 
 let benchmarkConfig = {
   addTodoCnt: 100
@@ -21,6 +21,7 @@ let beforeEditCache;
 
 // ==================== benchmarking methods =================
 
+// benchmark method: addTodos
 function addOneTodo(text) {
   store.todos = [...store.todos, { title: text, id: text, completed: false }];
 }
@@ -41,13 +42,66 @@ function add1000TodosButton() {
     children: [new TextNode("Add 100 Todos")]
   });
 }
+
+// benchmark method: deleteTodos
+function deleteOneTodo() {
+  store.todos.splice(0, 1);
+  store.todos = store.todos;
+}
+
+function deleteTodos(n) {
+  if (n > 0)
+    setTimeout(() => {
+      deleteOneTodo();
+      deleteTodos(n - 1);
+    });
+}
+function delete1000TodosButton() {
+  return new ElementNode({
+    tag: "button",
+    properties: {
+      id: "benchmark-delete-todos",
+      onclick: () => deleteTodos(benchmarkConfig.addTodoCnt - 1)
+    },
+    children: [new TextNode("Delete 99 Todos")]
+  });
+}
+
+// benchmar method: reorder
+function reorderOneTodo() {
+  const last = store.todos.splice(store.todos.length - 1, 1);
+  store.todos = [...last, ...store.todos];
+}
+
+function reorderTodos(n) {
+  if (n > 0)
+    setTimeout(() => {
+      reorderOneTodo();
+      reorderTodos(n - 1);
+    });
+}
+function reorder1000TodosButton() {
+  return new ElementNode({
+    tag: "button",
+    properties: {
+      id: "benchmark-reorder-todos",
+      onclick: () => reorderTodos(benchmarkConfig.addTodoCnt - 1)
+    },
+    children: [new TextNode("reorder 99 Todos")]
+  });
+}
+
 export let benchmarkMethods = new Component({
   position: document.body.firstElementChild,
   render: () =>
     new ElementNode({
       tag: "div",
       properties: { className: "benchmark" },
-      children: [add1000TodosButton()]
+      children: [
+        add1000TodosButton(),
+        delete1000TodosButton(),
+        reorder1000TodosButton()
+      ]
     })
 });
 
