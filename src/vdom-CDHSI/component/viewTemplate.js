@@ -11,6 +11,9 @@ export class ViewTemplate {
   constructor() {
     this.domNode = null; // dom node in the current frame
     this._nextDomNode = null; // dom node for the next frame
+    this.parent = null;
+    this.pos = 0;
+    this._depth = 0; // how far the node is from the root
   }
 }
 

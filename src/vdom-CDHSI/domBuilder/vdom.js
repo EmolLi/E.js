@@ -51,7 +51,7 @@ function patchVnode(oldVnode, vnode) {
     } else if (oldCh) {
       removeVnodes(elm, oldCh, 0, oldCh.length - 1);
     } else if (oldVnode instanceof TextNode) {
-      elm.textContent("");
+      elm.textContent = "";
     }
   } // textNode
   else if (oldVnode.string !== vnode.string) {
