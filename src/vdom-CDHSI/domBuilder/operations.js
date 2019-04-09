@@ -66,7 +66,7 @@ export class MOVE extends Operation {
   // move subtree rooted at x to child of y, just before child k
   constructor(x, y, k) {
     super(x, y, k);
-    debugger;
+    // debugger;
     this.execute();
   }
   execute() {

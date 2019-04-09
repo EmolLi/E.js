@@ -45,6 +45,8 @@ export function map(rootX, rootY) {
 function addMatching(x, y, mapping) {
   mapping.set(x, y);
   mapping.set(y, x);
+  if (x.domNode) y.domNode = x.domNode;
+  else if (y.domNode) x.domNode = y.domNode;
 }
 
 function generateNodeDepthDict(x, nodeDepthDict) {
@@ -137,7 +139,7 @@ export function generateEditScript(rootX, rootY, mapping) {
     if (mapping.has(x) && mapping.get(x) == x) return;
 
     let y = x.parent;
-    let z;
+    let z = null;
     if (y) z = mapping.get(y);
 
     if (!mapping.has(x)) {
