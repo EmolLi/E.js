@@ -204,7 +204,6 @@ function todoListItems() {
 
   function todoEdit(todo) {
     let editOnKeyUp = todo => e => {
-      // debugger;
       if (e.key === "Enter") {
         // add new todo
         doneEdit(todo);
@@ -251,7 +250,6 @@ function todoListItems() {
 
   function editTodo(todoItem) {
     beforeEditCache = todoItem.title;
-    // debugger;
     store.editedTodo = todoItem;
   }
 

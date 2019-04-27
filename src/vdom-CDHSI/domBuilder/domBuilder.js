@@ -14,7 +14,6 @@ export function build(component) {
     console.log("[DOM BUILDER] patching ", component);
 
     let mapping = map(historyVtree.get(component), vnode);
-    // debugger;
     generateEditScript(historyVtree.get(component), vnode, mapping);
   } else {
     console.log("[DOM BUILDER] building ", component);
@@ -49,7 +48,6 @@ export function archiveVtree() {
 */
 export function createDomNode(viewTemplate) {
   let node;
-  // debugger;
   if (viewTemplate instanceof TextNode) {
     // text node
     node = document.createTextNode(viewTemplate.string);
@@ -69,7 +67,6 @@ export function createDomNode(viewTemplate) {
 
 export function createDomNodeWithoutChildren(viewTemplate) {
   let node;
-  // debugger;
   if (viewTemplate instanceof TextNode) {
     // text node
     node = document.createTextNode(viewTemplate.string);

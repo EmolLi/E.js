@@ -38,10 +38,8 @@ function patchVnode(oldVnode, vnode) {
   const elm = (vnode.domNode = oldVnode.domNode);
   let oldCh = oldVnode.children;
   let ch = vnode.children;
-  if (oldVnode === vnode) {
-    // console.log("skip 1");
-    return;
-  }
+  if (oldVnode === vnode) return;
+
   if (vnode instanceof ElementNode) {
     if (oldCh && ch) {
       if (oldCh !== ch) updateChildren(elm, oldCh, ch);

@@ -30,7 +30,6 @@ export function map(rootX, rootY) {
         x = nodeDepthDict1[level][i];
         y = nodeDepthDict2[level][j];
         if (equal(x, y)) {
-          // console.log("[INFO] match", x, y);
           addMatching(x, y, mapping);
           nodeDepthDict2[level].splice(j, 1);
           break;
@@ -132,10 +131,6 @@ export function generateEditScript(rootX, rootY, mapping) {
 
   bfs(rootY, x => {
     if (!x) return;
-    if (x instanceof TextNode) {
-      console.log(1);
-      // debugger;
-    }
     if (mapping.has(x) && mapping.get(x) == x) return;
 
     let y = x.parent;
@@ -143,10 +138,8 @@ export function generateEditScript(rootX, rootY, mapping) {
     if (y) z = mapping.get(y);
 
     if (!mapping.has(x)) {
-      debugger;
       if (x.pos >= z.children.length) editScript.push(new INSERT(x, z, null));
       else {
-        debugger;
         editScript.push(new INSERT(x, z, z.children[x.pos]));
       }
       // editScript.push(new INSERT(x, z, x.pos));

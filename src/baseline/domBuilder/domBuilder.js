@@ -13,7 +13,6 @@ export function build(component) {
 */
 function createDomNode(viewTemplate) {
   let node;
-  // debugger;
   if (viewTemplate instanceof TextNode) {
     // text node
     node = document.createTextNode(viewTemplate.string);

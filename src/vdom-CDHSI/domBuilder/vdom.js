@@ -39,7 +39,6 @@ function patchVnode(oldVnode, vnode) {
   let oldCh = oldVnode.children;
   let ch = vnode.children;
   if (oldVnode === vnode) {
-    // console.log("skip 1");
     return;
   }
   if (vnode instanceof ElementNode) {
